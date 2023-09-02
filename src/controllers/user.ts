@@ -47,7 +47,7 @@ const createNewUser = async (req: Request, res: Response) => {
 };
 
 export default function handlerRouteForUser(app: Application) {
-  app.post("/users/create", createNewUser);
+  app.post("/users", createNewUser);
   app.get("/users", verifyUserToken, getAllUsers);
   app.get("/users/:id", verifyUserToken, getUsersWithQuery);
 }

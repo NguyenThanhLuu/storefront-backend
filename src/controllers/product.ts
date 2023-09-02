@@ -76,7 +76,7 @@ const deleteAProduct = async (req: Request, res: Response) => {
 export default function handlerRouteForProduct(app: Application) {
   app.get("/products", getAllProducts);
   app.get("/products/:id", getProductsWithQuery);
-  app.post("/products/create", verifyUserToken, createNewAProduct);
+  app.post("/products", verifyUserToken, createNewAProduct);
   app.put("/products/:id", verifyUserToken, updateForAProduct);
   app.delete("/products/:id", verifyUserToken, deleteAProduct);
 }

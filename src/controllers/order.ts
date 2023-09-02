@@ -55,5 +55,5 @@ const getOrdersWithQuery = async (req: Request, res: Response) => {
 export default function orderRoutes(app: Application) {
   app.get("/orders", verifyUserToken, getAllOrders);
   app.get("/orders/:id", verifyUserToken, getOrdersWithQuery);
-  app.post("/orders/create", verifyUserToken, createNewOrder);
+  app.post("/orders", verifyUserToken, createNewOrder);
 }

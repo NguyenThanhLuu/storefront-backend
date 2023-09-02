@@ -10,7 +10,7 @@ Below is some endpoints we can use in this project.
 - Index: `'products/' [GET]`
 - Show: `'products/:id' [GET]`
 - Create [token required]: `'products/' [POST] (token)`
-- Update [token required]: `'/products/:id' [PUT] (token)`
+- Update [token required]: `'products/:id' [PUT] (token)`
 - Delete [token required]: `'products/:id  [DELETE] (token)`
 
 #### Users
@@ -23,7 +23,7 @@ Below is some endpoints we can use in this project.
 
 - Index [token required]: `'orders/:id' [GET] (token)`
 - Show [token required]: `'orders/:id' [GET] (token)`
-- Create [token required]: `'orders/create [POST] (token)`
+- Create [token required]: `'orders/ [POST] (token)`
 
 ## Data Shapes
 
@@ -51,7 +51,6 @@ Table: User (id: serial[primary key], username: varchar (200)[not null], firstna
 #### Orders
 
 - id
-- product_id
 - user_id
 - quantity
 - status
