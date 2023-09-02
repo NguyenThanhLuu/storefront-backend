@@ -1,0 +1,40 @@
+{
+  "name": "storefront-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.ts",
+  "scripts": {
+    "start": "nodemon src/server.ts",
+    "jasmine": "jasmine",
+    "migrate-up": "db-migrate up",
+    "migrate-down": "db-migrate down",
+    "docker-up": "docker-compose up",
+    "test": "jasmine-ts --config=jasmine.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jsonwebtoken": "^9.0.2",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.1",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "@ert78gb/jasmine-ts": "^0.3.2",
+    "@types/bcrypt": "^5.0.0",
+    "@types/body-parser": "^1.19.2",
+    "@types/express": "^4.17.17",
+    "@types/jasmine": "^4.3.5",
+    "@types/pg": "^8.10.2",
+    "@types/supertest": "^2.0.12",
+    "db-migrate": "^0.11.13",
+    "db-migrate-pg": "^1.3.0",
+    "jasmine": "^5.1.0",
+    "jasmine-spec-reporter": "^7.0.0",
+    "jasmine-ts": "^0.4.0",
+    "supertest": "^6.3.3"
+  }
+}
