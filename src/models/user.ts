@@ -29,8 +29,8 @@ export class UserQuery {
   }
 
   async createNewUser(user: User): Promise<User> {
-    const { firstname, lastname, username, encode_pass } = user;
-    const hashCode = bcrypt.hashSync(encode_pass + (process.env.BCRYPT_PASSWORD as string), parseInt(process.env.SALT_ROUNDS as string, 10));
+    const { firstname, lastname, username, password } = user;
+    const hashCode = bcrypt.hashSync(password + (process.env.BCRYPT_PASSWORD as string), parseInt(process.env.SALT_ROUNDS as string, 10));
     try {
       const sql = "INSERT INTO users (firstname, lastname, username, encode_pass) VALUES($1, $2, $3, $4) RETURNING *";
       const connection = await Client.connect();

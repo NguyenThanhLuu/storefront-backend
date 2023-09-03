@@ -27,17 +27,17 @@ Below is some endpoints we can use in this project.
 
 ## Data Shapes
 
-#### Product
+#### Products
 
 - id
 - name
 - price
 
 ```
-Table: Product (id: serial[primary key], name: varchar(200)[not null], price: integer[not null])
+Table: products (id: serial[primary key], name: varchar(200)[not null], price: integer[not null])
 ```
 
-#### User
+#### Users
 
 - id
 - firstname
@@ -45,16 +45,26 @@ Table: Product (id: serial[primary key], name: varchar(200)[not null], price: in
 - endcode_pass
 
 ```
-Table: User (id: serial[primary key], username: varchar (200)[not null], firstname: varchar (200)[not null], lastname: varchar(200)[not null], endcode_pass: varchar(200)[not null])
+Table: users (id: serial[primary key], username: varchar (200)[not null], firstname: varchar (200)[not null], lastname: varchar(200)[not null], endcode_pass: varchar(200)[not null])
 ```
 
 #### Orders
 
 - id
 - user_id
-- quantity
 - status
 
 ```
-Table: Orders (id:serial[primary key], product_id:integer(foreign key to products table), quantity:integer, user_id:integer(foreign key to users table), status: boolean[not null])
+Table: orders (id: serial[primary key], product_id: integer(foreign key to products table),user_id: integer(foreign key to users table), status: varchar[not null])
+```
+
+#### Order Products
+
+- id
+- order_id
+- product_id
+- quantity
+
+```
+Table: order_products (id: serial[primary key], product_id: integer(foreign key to products table),order_id: integer(foreign key to orders table), quantity: integer)
 ```

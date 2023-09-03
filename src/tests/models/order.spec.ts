@@ -24,7 +24,7 @@ describe("Order Model", () => {
       firstname: "Joo",
       lastname: "David",
       username: "DavidJoo",
-      encode_pass: "DavidJoo123",
+      password: "DavidJoo123",
     });
     if (user.id) {
       user_id = user.id;

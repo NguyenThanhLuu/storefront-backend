@@ -20,7 +20,7 @@ describe("Product Handler", () => {
       firstname: "Joo",
       lastname: "David",
       username: "DavidJoo",
-      encode_pass: "DavidJoo123",
+      password: "DavidJoo123",
     };
 
     const { body } = await request.post("/users/create").send(userData);

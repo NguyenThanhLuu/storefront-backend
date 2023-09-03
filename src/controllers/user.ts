@@ -11,7 +11,7 @@ const getAllUsers = async (req: Request, res: Response) => {
     const users: User[] = await userQuery.getAllUsers();
     res.json(users);
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json(err);
   }
 };
 
@@ -25,7 +25,7 @@ const getUsersWithQuery = async (req: Request, res: Response) => {
     const user: User = await userQuery.getUsersWithQuery(id);
     res.json(user);
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json(err);
   }
 };
 
@@ -34,15 +34,15 @@ const createNewUser = async (req: Request, res: Response) => {
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
     const username = req.body.username;
-    const encode_pass = req.body.encode_pass;
-    if (!firstname || !lastname || !username || !encode_pass) {
-      res.status(400).send("Your request body lack of firstname or lastname or username or encode_pass");
+    const password = req.body.password;
+    if (!firstname || !lastname || !username || !password) {
+      res.status(400).send("Your request body lack of firstname or lastname or username or password");
       return;
     }
-    const user: User = await userQuery.createNewUser({ firstname, lastname, username, encode_pass });
+    const user: User = await userQuery.createNewUser({ firstname, lastname, username, password });
     res.json(getTokenByUser(user));
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json(err);
   }
 };
 

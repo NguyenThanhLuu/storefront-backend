@@ -12,7 +12,7 @@ describe("User Handler", () => {
     firstname: "Joo",
     lastname: "David",
     username: "DavidJoo",
-    encode_pass: "DavidJoo123",
+    password: "DavidJoo123",
   };
 
   let token: string,

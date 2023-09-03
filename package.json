@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon src/server.ts",
     "jasmine": "jasmine",
-    "migration": "db-migrate create orders --sql-file",
+    "migration": "db-migrate create order-products --sql-file",
     "migrate-up": "db-migrate up",
     "migrate-down": "db-migrate down",
     "docker-up": "docker-compose up",

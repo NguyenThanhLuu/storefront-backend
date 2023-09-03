@@ -10,7 +10,7 @@ const getAllProducts = async (req: Request, res: Response) => {
     const products: Product[] = await productQuery.getAllProducts();
     res.json(products);
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json(err);
   }
 };
 
@@ -24,7 +24,7 @@ const getProductsWithQuery = async (req: Request, res: Response) => {
     const product: Product = await productQuery.getProductsWithQuery(id);
     res.json(product);
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json(err);
   }
 };
 
@@ -39,7 +39,7 @@ const createNewAProduct = async (req: Request, res: Response) => {
     const product: Product = await productQuery.createNewAProduct({ name, price });
     res.json(product);
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json(err);
   }
 };
 
@@ -55,7 +55,7 @@ const updateForAProduct = async (req: Request, res: Response) => {
     const product: Product = await productQuery.updateForAProduct({ id, name, price });
     res.json(product);
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json(err);
   }
 };
 
@@ -69,7 +69,7 @@ const deleteAProduct = async (req: Request, res: Response) => {
     const product: Product = await productQuery.deleteAProduct(id);
     res.json(product);
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json(err);
   }
 };
 

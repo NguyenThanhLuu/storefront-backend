@@ -8,7 +8,7 @@ describe("User Model", () => {
     firstname: "Joo",
     lastname: "David",
     username: "DavidJoo",
-    encode_pass: "DavidJoo123",
+    password: "DavidJoo123",
   };
 
   async function createUser(user: User) {

@@ -77,6 +77,7 @@ POSTGRES_TEST_DB="store-DB"
 TOKEN_KEY="store"
 BCRYPT_PASSWORD="store"
 SALT_ROUNDS="5"
+ENV="test"
 
 ```
 

@@ -3,5 +3,5 @@ export interface User {
   username: string;
   firstname: string;
   lastname: string;
-  encode_pass: string;
+  password: string;
 }
