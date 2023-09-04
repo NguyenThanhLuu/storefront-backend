@@ -23,38 +23,31 @@ describe("Product Handler", () => {
       password: "DavidJoo123",
     };
 
-    const { body } = await request.post("/users/create").send(userData);
+    const { body } = await request.post("/users").send(userData);
     token = body;
     const { user } = jwt.verify(body, SECRET) as JwtPayload;
     userId = user.id;
   });
 
-  afterAll(async () => {
-    await request.delete(`/users/${userId}`).set("Authorization", "bearer " + token);
-  });
-
-  it("should create new product", async (done) => {
+  it("should create new product", async () => {
     const res = await request
-      .post("/products/create")
+      .post("/products")
       .send(product)
       .set("Authorization", "bearer " + token);
     expect(res.status).toBe(200);
-    done();
   });
 
-  it("should get all products", async (done) => {
+  it("should get all products", async () => {
     const res = await request.get("/products");
     expect(res.status).toBe(200);
-    done();
   });
 
-  it("should get product with id = 3", async (done) => {
+  it("should get product with id = 3", async () => {
     const res = await request.get(`/products/3`);
     expect(res.status).toBe(200);
-    done();
   });
 
-  it("gets the update endpoint", async (done) => {
+  it("gets the update endpoint", async () => {
     const newProductData: Product = {
       ...product,
       name: "Cap",
@@ -64,14 +57,11 @@ describe("Product Handler", () => {
       .put(`/products/2`)
       .send(newProductData)
       .set("Authorization", "bearer " + token);
-
     expect(res.status).toBe(200);
-    done();
   });
 
-  it("gets the delete endpoint", async (done) => {
+  it("gets the delete endpoint", async () => {
     const res = await request.delete(`/products/4`).set("Authorization", "bearer " + token);
     expect(res.status).toBe(200);
-    done();
   });
 });

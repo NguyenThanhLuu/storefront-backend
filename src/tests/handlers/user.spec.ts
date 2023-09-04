@@ -18,25 +18,22 @@ describe("User Handler", () => {
   let token: string,
     userId = 2;
 
-  it("should create new user", async (done) => {
-    const res = await request.post("/users/create").send(userData);
+  it("should create new user", async () => {
+    const res = await request.post("/users").send(userData);
     const { body, status } = res;
     token = body;
     const { user } = jwt.verify(token, SECRET) as JwtPayload;
     userId = user.id;
     expect(status).toBe(200);
-    done();
   });
 
-  it("should get all users", async (done) => {
+  it("should get all users", async () => {
     const res = await request.get("/users").set("Authorization", "bearer " + token);
     expect(res.status).toBe(200);
-    done();
   });
 
-  it("should get user with id = 2", async (done) => {
+  it("should get user with id = 2", async () => {
     const res = await request.get(`/users/${userId}`).set("Authorization", "bearer " + token);
     expect(res.status).toBe(200);
-    done();
   });
 });

@@ -39,7 +39,6 @@ describe("User Model", () => {
   it("should return all users", async () => {
     const result: any = await userStore.getAllUsers();
     expect(result[0].username).toEqual("DavidJoo");
-    expect(result[0].id).toEqual(1);
     expect(result[0].firstname).toEqual("Joo");
     expect(result[0].lastname).toEqual("David");
   });

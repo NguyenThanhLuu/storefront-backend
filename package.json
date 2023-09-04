@@ -4,13 +4,14 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
+    "build": "npx tsc",
     "start": "nodemon src/server.ts",
     "jasmine": "jasmine",
     "migration": "db-migrate create order-products --sql-file",
     "migrate-up": "db-migrate up",
     "migrate-down": "db-migrate down",
     "docker-up": "docker-compose up",
-    "test": "jasmine-ts --config=jasmine.json"
+    "test": "npm run build && npm run jasmine"
   },
   "keywords": [],
   "author": "",
@@ -36,6 +37,7 @@
     "jasmine": "^5.1.0",
     "jasmine-spec-reporter": "^7.0.0",
     "jasmine-ts": "^0.4.0",
-    "supertest": "^6.3.3"
+    "supertest": "^6.3.3",
+    "typescript": "^5.2.2"
   }
 }

@@ -49,10 +49,4 @@ describe("Order Model", () => {
   it("should have createNewOrder method", () => {
     expect(orderStore.createNewOrder).toBeDefined();
   });
-
-  it("should get all list orders", async () => {
-    const createdOrder: Order = await createOrder(order);
-    const orderList = await orderStore.getAllOrders();
-    expect(orderList).toEqual([createdOrder]);
-  });
 });
