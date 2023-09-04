@@ -1,5 +1,6 @@
 import supertest from "supertest";
 import jwt, { JwtPayload, Secret } from "jsonwebtoken";
+
 import app from "../../server";
 import { Product } from "../../shares/interfaces/product";
 import { User } from "../../shares/interfaces/user";
@@ -9,12 +10,10 @@ const SECRET = process.env.TOKEN_KEY as Secret;
 
 describe("Product Handler", () => {
   const product: Product = {
-    name: "Basil Barramunda",
-    price: 29,
+    name: "Banana",
+    price: 4000,
   };
-
   let token: string, userId: number;
-
   beforeAll(async () => {
     const userData: User = {
       firstname: "Joo",
@@ -22,14 +21,13 @@ describe("Product Handler", () => {
       username: "DavidJoo",
       password: "DavidJoo123",
     };
-
     const { body } = await request.post("/users").send(userData);
     token = body;
     const { user } = jwt.verify(body, SECRET) as JwtPayload;
     userId = user.id;
   });
 
-  it("should create new product", async () => {
+  it("should return correct value with create product endpoint", async () => {
     const res = await request
       .post("/products")
       .send(product)
@@ -37,17 +35,17 @@ describe("Product Handler", () => {
     expect(res.status).toBe(200);
   });
 
-  it("should get all products", async () => {
+  it("should return correct value with get all product endpoint", async () => {
     const res = await request.get("/products");
     expect(res.status).toBe(200);
   });
 
-  it("should get product with id = 3", async () => {
+  it("should return correct value with get products/3 endpoint", async () => {
     const res = await request.get(`/products/3`);
     expect(res.status).toBe(200);
   });
 
-  it("gets the update endpoint", async () => {
+  it("should update endpoint", async () => {
     const newProductData: Product = {
       ...product,
       name: "Cap",

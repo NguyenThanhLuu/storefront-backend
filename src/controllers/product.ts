@@ -47,7 +47,7 @@ const updateForAProduct = async (req: Request, res: Response) => {
   try {
     const name = req.body.name;
     const price = req.body.price;
-    const id = req.params.id;
+    const id = +req.params.id;
     if (!name || !price || !id) {
       res.status(400).send("Your request body lack of name or price or id");
       return;

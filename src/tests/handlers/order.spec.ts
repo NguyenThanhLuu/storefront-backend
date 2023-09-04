@@ -19,7 +19,7 @@ describe("Order Handler", () => {
     token = userBody;
   });
 
-  it("should create new order", async () => {
+  it("should create order (adding products to order) endpoint", async () => {
     const res = await request
       .post("/orders")
       .set("Authorization", "Bearer " + token)
@@ -46,9 +46,19 @@ describe("Order Handler", () => {
     });
   });
 
-  it("gets orders", async (done) => {
+  it("gets index endpoint", async (done) => {
     request
       .get("/orders")
+      .set("Authorization", "bearer " + token)
+      .then((res) => {
+        expect(res.status).toBe(200);
+        done();
+      });
+  });
+
+  it("should gets the read endpoint", async (done) => {
+    request
+      .get(`/orders/1`)
       .set("Authorization", "bearer " + token)
       .then((res) => {
         expect(res.status).toBe(200);

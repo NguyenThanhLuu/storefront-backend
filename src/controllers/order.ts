@@ -39,7 +39,7 @@ const createNewOrder = async (req: Request, res: Response) => {
 
 const getOrdersWithQuery = async (req: Request, res: Response) => {
   try {
-    const id = req.params.id;
+    const id = +req.params.id;
     if (!id) {
       res.status(400).send("Your request body lack of id");
       return;

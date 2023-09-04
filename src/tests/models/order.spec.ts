@@ -10,12 +10,11 @@ const orderStore = new OrderQuery();
 describe("Order Model", () => {
   const userStore = new UserQuery();
   const productStore = new ProductQuery();
-
   let order: Order;
-  let user_id: number | string;
-  let product_id: number | string;
+  let user_id: number;
+  let product_id: number;
 
-  function createOrder(order: Order) {
+  function createAnOrder(order: Order) {
     return orderStore.createNewOrder(order);
   }
 
@@ -26,16 +25,22 @@ describe("Order Model", () => {
       username: "DavidJoo",
       password: "DavidJoo123",
     });
-    if (user.id) {
-      user_id = user.id;
-    }
+    user_id = user.id ? user.id : 1;
     const product: Product = await productStore.createNewAProduct({
-      name: "product new 1",
-      price: 20,
+      name: "Product 1",
+      price: 1000,
     });
-    if (product.id) {
-      product_id = product.id;
-    }
+    product_id = product.id ? product.id : 1;
+    order = {
+      products: [
+        {
+          product_id,
+          quantity: 5,
+        },
+      ],
+      user_id,
+      status: "pending",
+    };
   });
 
   it("should have getAllOrders method", () => {
@@ -48,5 +53,27 @@ describe("Order Model", () => {
 
   it("should have createNewOrder method", () => {
     expect(orderStore.createNewOrder).toBeDefined();
+  });
+
+  it("should return correct new order after run createAnOrder() in model", async () => {
+    const createdOrder: Order = await createAnOrder(order);
+    expect(createdOrder).toEqual({
+      id: createdOrder.id,
+      ...order,
+    });
+  });
+
+  it("should return a list of orders after get all", async () => {
+    const createdOrder: Order = await createAnOrder(order);
+    const orderList = await orderStore.getAllOrders();
+    expect(orderList).toEqual([createdOrder]);
+  });
+
+  it("show return correct order follow an id", async () => {
+    const createdOrder: Order = await createAnOrder(order);
+    if (createdOrder.id) {
+      const orderData = await orderStore.getOrdersWithQuery(createdOrder.id);
+      expect(orderData).toEqual(createdOrder);
+    }
   });
 });

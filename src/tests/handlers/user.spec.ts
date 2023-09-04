@@ -14,11 +14,10 @@ describe("User Handler", () => {
     username: "DavidJoo",
     password: "DavidJoo123",
   };
+  let token: string;
+  let userId = 2;
 
-  let token: string,
-    userId = 2;
-
-  it("should create new user", async () => {
+  it("should return correct value with create user endpoint", async () => {
     const res = await request.post("/users").send(userData);
     const { body, status } = res;
     token = body;
@@ -27,12 +26,12 @@ describe("User Handler", () => {
     expect(status).toBe(200);
   });
 
-  it("should get all users", async () => {
+  it("should return correct value with get all user endpoint", async () => {
     const res = await request.get("/users").set("Authorization", "bearer " + token);
     expect(res.status).toBe(200);
   });
 
-  it("should get user with id = 2", async () => {
+  it("should get the read endpoint", async () => {
     const res = await request.get(`/users/${userId}`).set("Authorization", "bearer " + token);
     expect(res.status).toBe(200);
   });

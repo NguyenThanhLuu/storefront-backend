@@ -48,7 +48,7 @@ export class OrderQuery {
     }
   }
 
-  async getOrdersWithQuery(orderId: string | number): Promise<Order> {
+  async getOrdersWithQuery(orderId: number): Promise<Order> {
     try {
       const sql = "SELECT * FROM orders WHERE id=($1)";
       const connection = await Client.connect();
