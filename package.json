@@ -11,7 +11,7 @@
     "migrate-up": "db-migrate up",
     "migrate-down": "db-migrate down",
     "docker-up": "docker-compose up",
-    "test": "set ENV=test && npm run build && npm run jasmine"
+    "test": "db-migrate --env test up && set ENV=test && npm run build && npm run jasmine"
   },
   "keywords": [],
   "author": "",
