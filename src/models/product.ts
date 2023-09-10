@@ -39,17 +39,17 @@ export class ProductQuery {
     }
   }
 
-  async updateForAProduct(product: Product): Promise<Product> {
-    const { id, name, price } = product;
+  async updateForAProduct(id: number, productData: Product): Promise<Product> {
+    const { name: newName, price } = productData;
 
     try {
       const sql = "UPDATE products SET name = $1, price = $2 WHERE id = $3 RETURNING *";
       const connection = await Client.connect();
-      const { rows } = await connection.query(sql, [name, price, id]);
+      const { rows } = await connection.query(sql, [newName, price, id]);
       connection.release();
       return rows[0];
     } catch (err) {
-      throw new Error(`Could not update product: ${err}`);
+      throw new Error(`Could not update product ${name}. ${err}`);
     }
   }
 

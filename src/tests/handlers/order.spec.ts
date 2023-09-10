@@ -63,4 +63,13 @@ describe("Order Handler", () => {
         expect(res.status).toBe(200);
       });
   });
+
+  it("should gets the delete endpoint", async () => {
+    request
+      .delete(`/orders/2`)
+      .set("Authorization", "bearer " + token)
+      .then((res) => {
+        expect(res.status).toBe(200);
+      });
+  });
 });

@@ -27,6 +27,10 @@ describe("Product Handler", () => {
     userId = user.id;
   });
 
+  afterAll(async () => {
+    await request.delete(`/users/${userId}`).set("Authorization", "bearer " + token);
+  });
+
   it("should return correct value with create product endpoint", async () => {
     const res = await request
       .post("/products")

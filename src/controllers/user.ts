@@ -46,8 +46,23 @@ const createNewUser = async (req: Request, res: Response) => {
   }
 };
 
+const deleteUser = async (req: Request, res: Response) => {
+  try {
+    const id = req.params.id as unknown as number;
+    if (!id) {
+      res.status(400).send("Missing required parameter :id.");
+      return false;
+    }
+    await userQuery.deleteAnUser(id);
+    res.send(`User with id ${id} successfully deleted.`);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
+
 export default function handlerRouteForUser(app: Application) {
   app.post("/users", createNewUser);
   app.get("/users", verifyUserToken, getAllUsers);
   app.get("/users/:id", verifyUserToken, getUsersWithQuery);
+  app.delete("/users/:id", verifyUserToken, deleteUser);
 }

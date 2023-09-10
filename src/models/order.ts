@@ -65,4 +65,19 @@ export class OrderQuery {
       throw new Error(`Could not get orders from query: ${err}`);
     }
   }
+
+  async deleteAnOrder(id: number | undefined): Promise<Order> {
+    try {
+      const connection = await Client.connect();
+      const orderProductsSql = "DELETE FROM order_products WHERE order_id=($1)";
+      await connection.query(orderProductsSql, [id]);
+      const sql = "DELETE FROM orders WHERE id=($1)";
+      const { rows } = await connection.query(sql, [id]);
+      const order = rows[0];
+      connection.release();
+      return order;
+    } catch (err) {
+      throw new Error(`Could not delete order ${id}. ${err}`);
+    }
+  }
 }

@@ -41,4 +41,16 @@ export class UserQuery {
       throw new Error(`Could not add a new user: ${err}`);
     }
   }
+
+  async deleteAnUser(id: number): Promise<boolean> {
+    try {
+      const sql = "DELETE FROM users WHERE id=($1)";
+      const connection = await Client.connect();
+      await connection.query(sql, [id]);
+      connection.release();
+      return true;
+    } catch (err) {
+      throw new Error(`Could not delete user ${id}. ${err}`);
+    }
+  }
 }

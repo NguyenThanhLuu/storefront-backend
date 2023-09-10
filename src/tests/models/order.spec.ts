@@ -43,6 +43,11 @@ describe("Order Model", () => {
     };
   });
 
+  afterAll(async () => {
+    await userStore.deleteAnUser(user_id);
+    await productStore.deleteAProduct(product_id);
+  });
+
   it("should have getAllOrders method", () => {
     expect(orderStore.getAllOrders).toBeDefined();
   });
@@ -61,12 +66,14 @@ describe("Order Model", () => {
       id: createdOrder.id,
       ...order,
     });
+    await orderStore.deleteAnOrder(createdOrder.id);
   });
 
   it("should return a list of orders after get all", async () => {
     const createdOrder: Order = await createAnOrder(order);
     const orderList = await orderStore.getAllOrders();
     expect(orderList).toEqual([createdOrder]);
+    await orderStore.deleteAnOrder(createdOrder.id);
   });
 
   it("show return correct order follow an id", async () => {
@@ -75,5 +82,13 @@ describe("Order Model", () => {
       const orderData = await orderStore.getOrdersWithQuery(createdOrder.id);
       expect(orderData).toEqual(createdOrder);
     }
+    await orderStore.deleteAnOrder(createdOrder.id);
+  });
+
+  it("should remove the order item", async () => {
+    const createdOrder: Order = await createAnOrder(order);
+    await orderStore.deleteAnOrder(createdOrder.id);
+    const orderList = await orderStore.getAllOrders();
+    expect(orderList).toEqual([]);
   });
 });

@@ -35,4 +35,10 @@ describe("User Handler", () => {
     const res = await request.get(`/users/${userId}`).set("Authorization", "bearer " + token);
     expect(res.status).toBe(200);
   });
+
+  it("should get the delete endpoint", async (done) => {
+    const res = await request.delete(`/users/${userId}`).set("Authorization", "bearer " + token);
+    expect(res.status).toBe(200);
+    done();
+  });
 });

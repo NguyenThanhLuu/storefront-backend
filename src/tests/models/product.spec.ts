@@ -13,6 +13,10 @@ describe("Product Model", () => {
     return productStore.createNewAProduct(product);
   }
 
+  async function deleteAProduct(id: number) {
+    return productStore.deleteAProduct(id);
+  }
+
   it("should have getAllProducts method", () => {
     expect(productStore.getAllProducts).toBeDefined();
   });
@@ -35,6 +39,7 @@ describe("Product Model", () => {
       id: createdProduct.id,
       ...product,
     });
+    await deleteAProduct(createdProduct.id as number);
   });
 
   it("should return all products", async () => {
@@ -54,15 +59,18 @@ describe("Product Model", () => {
       const productData = await productStore.getProductsWithQuery(createdProduct.id);
       expect(productData).toEqual(createdProduct);
     }
+    await deleteAProduct(createdProduct.id as number);
   });
 
   it("should update the product", async () => {
+    const createdProduct: Product = await createProduct(product);
     const newProduct: Product = {
       name: "new product",
       price: 10,
     };
-    const { name, price } = await productStore.updateForAProduct(newProduct);
+    const { name, price } = await productStore.updateForAProduct(createdProduct.id as number, newProduct);
     expect(name).toEqual(newProduct.name);
     expect(price).toEqual(newProduct.price);
+    await deleteAProduct(createdProduct.id as number);
   });
 });

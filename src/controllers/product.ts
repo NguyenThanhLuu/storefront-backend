@@ -52,7 +52,7 @@ const updateForAProduct = async (req: Request, res: Response) => {
       res.status(400).send("Your request body lack of name or price or id");
       return;
     }
-    const product: Product = await productQuery.updateForAProduct({ id, name, price });
+    const product: Product = await productQuery.updateForAProduct(id, { name, price });
     res.json(product);
   } catch (err) {
     res.status(500).json(err);

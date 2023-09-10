@@ -51,8 +51,25 @@ const getOrdersWithQuery = async (req: Request, res: Response) => {
   }
 };
 
+const deleteOrder = async (req: Request, res: Response) => {
+  try {
+    const id = req.params.id as unknown as number;
+    if (!id) {
+      res.status(400);
+      res.send("Missing required parameter :id.");
+      return false;
+    }
+    await orderQuery.deleteAnOrder(id);
+    res.send(`Order with id ${id} successfully deleted.`);
+  } catch (e) {
+    res.status(400);
+    res.json(e);
+  }
+};
+
 export default function orderRoutes(app: Application) {
   app.get("/orders", verifyUserToken, getAllOrders);
   app.get("/orders/:id", verifyUserToken, getOrdersWithQuery);
   app.post("/orders", verifyUserToken, createNewOrder);
+  app.delete("/orders/:id", verifyUserToken, deleteOrder);
 }

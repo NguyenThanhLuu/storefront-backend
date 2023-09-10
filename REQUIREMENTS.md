@@ -18,12 +18,14 @@ Below is some endpoints we can use in this project.
 - Index [token required]: `'users/' [GET] (token)`
 - Show [token required]: `'users/:id' [GET] (token)`
 - Create [token required]: `'users/' [POST] (token)`
+- Delete [token required]: `'users/:id' [DELETE] (token)`
 
 #### Orders
 
 - Index [token required]: `'orders/:id' [GET] (token)`
 - Show [token required]: `'orders/:id' [GET] (token)`
 - Create [token required]: `'orders/ [POST] (token)`
+- Delete [token required]: `'orders/:id [DELETE] (token)`
 
 ## Data Shapes
 
