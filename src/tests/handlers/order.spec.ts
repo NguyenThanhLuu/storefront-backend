@@ -46,23 +46,21 @@ describe("Order Handler", () => {
     });
   });
 
-  it("gets index endpoint", async (done) => {
+  it("gets index endpoint", async () => {
     request
       .get("/orders")
       .set("Authorization", "bearer " + token)
       .then((res) => {
         expect(res.status).toBe(200);
-        done();
       });
   });
 
-  it("should gets the read endpoint", async (done) => {
+  it("should gets the read endpoint", async () => {
     request
       .get(`/orders/1`)
       .set("Authorization", "bearer " + token)
       .then((res) => {
         expect(res.status).toBe(200);
-        done();
       });
   });
 });
