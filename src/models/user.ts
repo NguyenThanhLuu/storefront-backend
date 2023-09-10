@@ -22,7 +22,7 @@ export class UserQuery {
       const connection = await Client.connect();
       const { rows } = await connection.query(sql, [userId]);
       connection.release();
-      return rows;
+      return rows[0];
     } catch (err) {
       throw new Error(`Could not get users from query: ${err}`);
     }

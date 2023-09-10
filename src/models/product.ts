@@ -20,7 +20,7 @@ export class ProductQuery {
       const connection = await Client.connect();
       const { rows } = await connection.query(sql, [productId]);
       connection.release();
-      return rows;
+      return rows[0];
     } catch (err) {
       throw new Error(`Could not get products from query: ${err}`);
     }
