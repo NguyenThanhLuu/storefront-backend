@@ -23,7 +23,7 @@ describe("Product Handler", () => {
     };
     const { body } = await request.post("/users").send(userData);
     token = body;
-    const { user } = jwt.verify(body, SECRET) as JwtPayload;
+    const user = jwt.verify(body, SECRET) as JwtPayload;
     userId = user.id;
   });
 
@@ -63,7 +63,7 @@ describe("Product Handler", () => {
   });
 
   it("gets the delete endpoint", async () => {
-    const res = await request.delete(`/products/4`).set("Authorization", "bearer " + token);
+    const res = await request.delete(`/products/2`).set("Authorization", "bearer " + token);
     expect(res.status).toBe(200);
   });
 });

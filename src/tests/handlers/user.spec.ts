@@ -21,7 +21,7 @@ describe("User Handler", () => {
     const res = await request.post("/users").send(userData);
     const { body, status } = res;
     token = body;
-    const { user } = jwt.verify(token, SECRET) as JwtPayload;
+    const user = jwt.verify(token, SECRET) as JwtPayload;
     userId = user.id;
     expect(status).toBe(200);
   });
@@ -36,9 +36,8 @@ describe("User Handler", () => {
     expect(res.status).toBe(200);
   });
 
-  it("should get the delete endpoint", async (done) => {
+  it("should get the delete endpoint", async () => {
     const res = await request.delete(`/users/${userId}`).set("Authorization", "bearer " + token);
     expect(res.status).toBe(200);
-    done();
   });
 });

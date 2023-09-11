@@ -52,10 +52,10 @@ describe("User Model", () => {
     expect(result[0].lastname).toEqual("David");
   });
 
-  it('should remove the user', async () => {
+  it("should remove the user", async () => {
     const createdUser: User = await createAnUser(user);
-    expect(createdUser.firstname).toEqual('Chris');
-    expect(createdUser.lastname).toEqual('Anne');
+    expect(createdUser.firstname).toEqual("Joo");
+    expect(createdUser.lastname).toEqual("David");
     await deleteAnUser(createdUser.id as number);
   });
 });

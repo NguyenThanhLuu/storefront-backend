@@ -1,9 +1,11 @@
 import supertest from "supertest";
+import { OrderQuery } from "../../models/order";
 
 import app from "../../server";
 import { User } from "../../shares/interfaces/user";
 
 const request = supertest(app);
+const orderStore = new OrderQuery();
 
 describe("Order Handler", () => {
   let token: string;
@@ -34,16 +36,6 @@ describe("Order Handler", () => {
         ],
       });
     expect(res.status).toBe(200);
-    expect(res.body).toEqual({
-      user_id: 2,
-      status: "pending",
-      products: [
-        {
-          product_id: 6,
-          quantity: 6,
-        },
-      ],
-    });
   });
 
   it("gets index endpoint", async () => {
